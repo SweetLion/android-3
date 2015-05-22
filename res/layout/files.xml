@@ -21,9 +21,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:baselineAligned="false"
     >
+
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_color"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
 
 	<FrameLayout 
 		android:layout_width="0dp"
@@ -38,5 +50,5 @@
 		android:layout_weight="2"
 		android:id="@+id/right_fragment_container"
 	    />
-	
+	</LinearLayout>
  </LinearLayout>

@@ -33,6 +33,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -92,9 +93,14 @@ public class PreviewImageActivity extends FileActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+        //requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
         setContentView(R.layout.preview_image_activity);
-        
+
+        // Action bar setup
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
         ActionBar actionBar = getSupportActionBar();
         actionBar.setIcon(DisplayUtils.getSeasonalIconId());
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -107,7 +113,8 @@ public class PreviewImageActivity extends FileActivity implements
             mFullScreenAnchorView = getWindow().getDecorView();
             // to keep our UI controls visibility in line with system bars
             // visibility
-            mFullScreenAnchorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            mFullScreenAnchorView.setOnSystemUiVisibilityChangeListener(
+                    new View.OnSystemUiVisibilityChangeListener() {
                 @SuppressLint("InlinedApi")
                 @Override
                 public void onSystemUiVisibilityChange(int flags) {

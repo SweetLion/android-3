@@ -29,6 +29,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -114,7 +115,13 @@ public class UploadFilesActivity extends FileActivity implements
         mUploadBtn = (Button) findViewById(R.id.upload_files_btn_upload);
         mUploadBtn.setOnClickListener(this);
         
-            
+
+        // Action bar setup
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
+
         // Action bar setup
         ActionBar actionBar = getSupportActionBar();
         actionBar.setIcon(DisplayUtils.getSeasonalIconId());

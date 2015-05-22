@@ -21,6 +21,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <com.ortiz.touch.ExtendedViewPager
         android:id="@+id/fragmentPager"
 		android:layout_width="match_parent"

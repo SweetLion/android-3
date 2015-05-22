@@ -51,13 +51,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -156,7 +157,6 @@ public class FileDisplayActivity extends HookActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log_OC.v(TAG, "onCreate() start");
-        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
         super.onCreate(savedInstanceState); // this calls onAccountChanged() when ownCloud Account
                                             // is valid
@@ -193,25 +193,32 @@ public class FileDisplayActivity extends HookActivity implements
         }
 
         // Action bar setup
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            toolbar.setLogo(DisplayUtils.getSeasonalIconId());
+        }
         mDirectories = new CustomArrayAdapter<String>(this,
                 R.layout.support_simple_spinner_dropdown_item);
-        getSupportActionBar().setHomeButtonEnabled(true);       // mandatory since Android ICS,
+        //getSupportActionBar().setHomeButtonEnabled(true);       // mandatory since Android ICS,
                                                                 // according to the official
                                                                 // documentation
-        setSupportProgressBarIndeterminateVisibility(mSyncInProgress
-        /*|| mRefreshSharesInProgress*/);
+
+//        setSupportProgressBarIndeterminateVisibility(mSyncInProgress
+//        /*|| mRefreshSharesInProgress*/);
+        enableSyncInProgress(mSyncInProgress);
         // always AFTER setContentView(...) ; to work around bug in its implementation
         
         setBackgroundText();
 
         Log_OC.v(TAG, "onCreate() end");
     }
-    
+
     @Override
     protected void onStart() {
         Log_OC.v(TAG, "onStart() start");
         super.onStart();
-        getSupportActionBar().setIcon(DisplayUtils.getSeasonalIconId());
+        //getSupportActionBar().setIcon(DisplayUtils.getSeasonalIconId());
         Log_OC.v(TAG, "onStart() end");
     }
 
@@ -1027,9 +1034,9 @@ public class FileDisplayActivity extends HookActivity implements
                     }
                     removeStickyBroadcast(intent);
                     Log_OC.d(TAG, "Setting progress visibility to " + mSyncInProgress);
-                    setSupportProgressBarIndeterminateVisibility(mSyncInProgress
-                    /*|| mRefreshSharesInProgress*/);
-
+//                    setSupportProgressBarIndeterminateVisibility(mSyncInProgress
+//                    /*|| mRefreshSharesInProgress*/);
+                    enableSyncInProgress(mSyncInProgress);
                     setBackgroundText();
                         
                 }
@@ -1835,6 +1842,17 @@ public class FileDisplayActivity extends HookActivity implements
 
     private void sortByName(boolean ascending){
         getListOfFilesFragment().sortByName(ascending);
+    }
+
+    public void enableSyncInProgress(boolean syncInProgress){
+        ProgressBar progressBar = (ProgressBar)findViewById(R.id.progress_spinner);
+        if (progressBar != null) {
+            if (syncInProgress) {
+                progressBar.setVisibility(View.VISIBLE);
+            } else {
+                progressBar.setVisibility(View.INVISIBLE);
+            }
+        }
     }
 
 }

@@ -18,71 +18,79 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:oc="http://schemas.android.com/apk/res/com.owncloud.android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:padding="20dp" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
-    <TextView
-        android:id="@+id/header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pass_code_enter_pass_code"
-        android:textColor="@android:color/black"
-        android:gravity="center_horizontal"
-         />
-
-    <TextView
-        android:id="@+id/explanation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pass_code_configure_your_pass_code_explanation"
-        android:textAppearance="@android:style/TextAppearance.Small"
-        android:gravity="center_horizontal"
-         />
-    
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal" >
+        android:layout_height="fill_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp">
 
-        <EditText
-            android:id="@+id/txt0"
-            android:focusable="true"
-            style="@style/PassCodeStyle"
-            android:cursorVisible="true"
-            android:imeOptions="flagNoExtractUi"
-            ><requestFocus/></EditText>
-
-        <EditText
-            android:id="@+id/txt1"
-            style="@style/PassCodeStyle"
-            android:cursorVisible="true"
-            android:imeOptions="flagNoExtractUi"
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pass_code_enter_pass_code"
+            android:textColor="@android:color/black"
+            android:gravity="center_horizontal"
             />
 
-        <EditText
-            android:id="@+id/txt2"
-            style="@style/PassCodeStyle"
-            android:cursorVisible="true"
-            android:imeOptions="flagNoExtractUi"
+        <TextView
+            android:id="@+id/explanation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pass_code_configure_your_pass_code_explanation"
+            android:textAppearance="@android:style/TextAppearance.Small"
+            android:gravity="center_horizontal"
             />
 
-        <EditText
-            android:id="@+id/txt3"
-            style="@style/PassCodeStyle"
-            android:cursorVisible="true"
-            android:imeOptions="flagNoExtractUi"
-            />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" >
+
+            <EditText
+                android:id="@+id/txt0"
+                android:focusable="true"
+                style="@style/PassCodeStyle"
+                android:cursorVisible="true"
+                android:imeOptions="flagNoExtractUi"
+                ><requestFocus/></EditText>
+
+            <EditText
+                android:id="@+id/txt1"
+                style="@style/PassCodeStyle"
+                android:cursorVisible="true"
+                android:imeOptions="flagNoExtractUi"
+                />
+
+            <EditText
+                android:id="@+id/txt2"
+                style="@style/PassCodeStyle"
+                android:cursorVisible="true"
+                android:imeOptions="flagNoExtractUi"
+                />
+
+            <EditText
+                android:id="@+id/txt3"
+                style="@style/PassCodeStyle"
+                android:cursorVisible="true"
+                android:imeOptions="flagNoExtractUi"
+                />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/common_cancel" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/common_cancel" />
-
 </LinearLayout>
